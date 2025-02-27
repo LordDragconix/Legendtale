@@ -1,0 +1,27 @@
+# =============== #
+# Unity Generated #
+# =============== #
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+
+# Visual Studio / Rider
+.vs/
+*.csproj
+*.sln
+*.unityproj
+*.userprefs
+*.pidb
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.ide
+
+# Others
+.DS_Store
+*.swp
