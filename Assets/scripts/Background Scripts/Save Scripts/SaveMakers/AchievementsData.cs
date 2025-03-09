@@ -37,5 +37,7 @@ public class AchievementsData
 
         // Special Achievement (Unlocks when all others are earned)
         specialAchievementsList.Add(new AchievementEntry("Legendary Player", "Obtain all achievements."));
+
+        specialAchievementsList.Add(new AchievementEntry("A Legendary Tale", "Finish the True Ending of the game."));
     }
 }
