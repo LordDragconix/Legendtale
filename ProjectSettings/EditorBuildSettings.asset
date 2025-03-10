@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Undertale Menu.unity
     guid: fc471ee6496820b4a96780e5fae10911
   - enabled: 1
-    path: Assets/Scenes/Prologue/GammaFlowery.unity
+    path: Assets/Scenes/Prologue/GammaFlowey.unity
     guid: d823bfcf28ec6b24bb2ff59916b39fe3
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

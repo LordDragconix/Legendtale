@@ -31,7 +31,8 @@ public class MainMenuLoader : MonoBehaviour
         // Load the correct main menu scene
         if (prologueFinished)
         {
-            SceneManager.LoadScene(returningPlayerMenu); // Load main menu for returning players
+            //SceneManager.LoadScene(returningPlayerMenu); // Load main menu for returning players
+            //   /\ Not required (Currently)
         }
         else
         {
