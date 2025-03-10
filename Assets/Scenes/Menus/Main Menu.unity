@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 1221195805}
   maxRadius: 400
-  expansionSpeed: 300
+  expansionSpeed: 200
   bobAmount: 100
   bobSpeed: 2
   rotationSpeed: 100
