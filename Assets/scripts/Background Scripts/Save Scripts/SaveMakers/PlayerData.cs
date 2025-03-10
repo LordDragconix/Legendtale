@@ -12,6 +12,7 @@ public class PlayerData
     public int ATK;
     public int DEF;
     public float SPD;
+    public float INV;
     public int ML;
     public int G;
 
@@ -23,15 +24,16 @@ public class PlayerData
     // Constructor to initialize everything to proper defaults
     public PlayerData()
     {
-        LV = 1;
-        EXP = 0;
-        maxHP = 20;
-        currentHP = 20;
-        ATK = 0;
-        DEF = 0;
-        SPD = 5;
-        ML = 0;
-        G = 0;
+        LV = 1; //Love
+        EXP = 0; //EXecution Points
+        maxHP = 20; //Max Healthpoints
+        currentHP = 20; //Current Healthpoints
+        ATK = 0; //Attack
+        DEF = 0; //Defense
+        SPD = 5; //Speed
+        INV = 20; //Invulnerable
+        ML = 0; //Murder Level
+        G = 0; //Gold
         armor = "None";
         weapon = "None";
 
