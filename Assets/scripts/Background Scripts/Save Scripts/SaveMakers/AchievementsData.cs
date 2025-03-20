@@ -8,12 +8,14 @@ public class AchievementEntry
     public string name;
     public string description;
     public bool unlocked;
+    public bool displayed;
 
     public AchievementEntry(string name, string description)
     {
         this.name = name;
         this.description = description;
         this.unlocked = false;
+        this.displayed = false;
     }
 }
 
