@@ -736,8 +736,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 348224282}
+  - component: {fileID: 348224284}
+  - component: {fileID: 348224283}
   m_Layer: 0
-  m_Name: Attacks
+  m_Name: AttacksManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -758,6 +760,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &348224283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348224281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ecb7d1c21041f42b52eb4fd61f5d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHealthSlider: {fileID: 1484522872}
+  phaseText: {fileID: 0}
+  maxHP: 5000
+  currentDefense: 600
+  phaseHPThresholds: 2413000094110000a00f0000800c0000c4090000dc050000
+  defenseValues: f4010000900100002c010000c80000006400000000000000
+--- !u!114 &348224284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348224281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa038fea309ff1240b1f16d04c5a6476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &369660324
 GameObject:
   m_ObjectHideFlags: 0
