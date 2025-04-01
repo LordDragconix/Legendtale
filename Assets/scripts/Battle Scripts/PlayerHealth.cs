@@ -25,6 +25,14 @@ public class Player : MonoBehaviour
         lastPosition = transform.position;
     }
 
+    public void Heal(int amount)
+    {
+        currentHP = Mathf.Min(currentHP + amount, maxHP);
+        healthBar.SetHealth(currentHP);
+        Debug.Log($"Player healed {amount} HP. HP: {currentHP}");
+    }
+
+
     public bool IsMoving()
     {
         return isMoving;

@@ -57,7 +57,7 @@ public class BattleUIManager : MonoBehaviour
         if (itemUses < maxItemUses)
         {
             int healAmount = Random.Range(42, 100);
-            playerHealthSlider.value += healAmount;
+            FindObjectOfType<Player>().Heal(healAmount);
             itemUses++;
 
             if (itemUses >= maxItemUses)
