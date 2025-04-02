@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public int maxHP = 20; // Max HP of the player
     private int currentHP;
     public int defense = 5; // Defense value
+
+    public string sceneName;
 
     private Vector2 lastPosition;
     private bool isMoving;
@@ -57,6 +60,6 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died!");
-        // Implement game over logic here
+        SceneManager.LoadScene(sceneName);
     }
 }

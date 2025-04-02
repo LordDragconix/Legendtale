@@ -93,10 +93,10 @@ public class FakeCrash : MonoBehaviour
         new Thread(() =>
         {
             // First, show the error message
-            MessageBox(IntPtr.Zero, "An unknown error has occurred due to corrupted files. Please press 'OK' to restore a backup file.", "Undertale.exe Error", 0x00000010);
+            MessageBox(IntPtr.Zero, "An unknown error has occurred due to corrupted files. Please press 'OK' to restore a backup file.", "Undertale.exe Error", 0x00000050);
 
             // After the user dismisses the error, show the info message
-            MessageBox(IntPtr.Zero, "A backup has been found and restored. Please restart the game.", "Legendtale.exe", 0x00000040);
+            MessageBox(IntPtr.Zero, "A backup has been found and restored. Please restart the game.", "Legendtale.exe", 0x00000060);
 
             // Once the second message box is closed, exit the game
             CloseGame();

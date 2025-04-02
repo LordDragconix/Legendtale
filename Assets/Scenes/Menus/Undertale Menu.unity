@@ -1396,7 +1396,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GammaFlowery
+          m_StringArgument: GammaFlowey
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &983700070
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6468127276754234393, guid: 46b945d73321f6b40950305abfdb1eef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46b945d73321f6b40950305abfdb1eef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
