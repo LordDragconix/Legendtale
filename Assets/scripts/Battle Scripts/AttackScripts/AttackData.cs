@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAttack", menuName = "Legendtale/Attack")]
+[CreateAssetMenu(fileName = "NewAttack", menuName = "Legendtale/Attacks/New Attack")]
 public class AttackData : ScriptableObject
 {
     public string attackName;

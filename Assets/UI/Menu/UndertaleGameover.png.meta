@@ -237,7 +237,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UndertaleGameover_0: -2761402521199220380
+      UndertaleGameover_1: -1159479097952855722
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
