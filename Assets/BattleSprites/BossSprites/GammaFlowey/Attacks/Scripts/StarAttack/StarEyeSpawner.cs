@@ -5,8 +5,10 @@ public class StarEyeSpawner : MonoBehaviour
     public GameObject spiralSpawnerPrefab;
 
     [Header("Offsets relative to this object")]
-    public Vector3 leftEyeOffset = new Vector3(-1.46f, -1.01f, 0f);
-    public Vector3 rightEyeOffset = new Vector3(2.37f, -1.02f, 0f);
+    public Vector3 leftEyeOffset = new Vector3(-1.85f, 3.28f, 0f);
+    public Vector3 rightEyeOffset = new Vector3(1.85f, 3.28f, 0f);
+
+
 
     public bool spawnOnStart = true;
 
@@ -25,10 +27,26 @@ public class StarEyeSpawner : MonoBehaviour
 
         hasSpawned = true;
 
-        Vector3 leftPos = transform.position + leftEyeOffset;
-        Vector3 rightPos = transform.position + rightEyeOffset;
+        // Spawn as children so we can set localPosition directly
+        GameObject left = Instantiate(spiralSpawnerPrefab, transform);
+        GameObject right = Instantiate(spiralSpawnerPrefab, transform);
 
-        Instantiate(spiralSpawnerPrefab, leftPos, Quaternion.identity, transform);
-        Instantiate(spiralSpawnerPrefab, rightPos, Quaternion.identity, transform);
+        // Set their exact local positions
+        left.transform.localPosition = new Vector3(-1.85f, 3.28f, 0f);
+        right.transform.localPosition = new Vector3(1.85f, 3.28f, 0f);
+
+        // Detach from parent if needed (make them world-space independent)
+        left.transform.SetParent(null);
+        right.transform.SetParent(null);
+
+        var leftSpawner = left.GetComponent<SpiralProjectileSpawner>();
+        var rightSpawner = right.GetComponent<SpiralProjectileSpawner>();
+
+        AttackManager.Instance?.RegisterSpawner(leftSpawner);
+        AttackManager.Instance?.RegisterSpawner(rightSpawner);
     }
+
+
+
+
 }

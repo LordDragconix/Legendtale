@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiralSpawnerPrefab: {fileID: 9001822905184933150, guid: e757285cafbf7d34a896e087d4f4ab87, type: 3}
-  leftEyeOffset: {x: -1.46, y: -1.01, z: 0}
-  rightEyeOffset: {x: 2.37, y: -1.02, z: 0}
+  leftEyeOffset: {x: -1.85, y: 2.07, z: 0}
+  rightEyeOffset: {x: 1.85, y: 1.28, z: 0}
   spawnOnStart: 1

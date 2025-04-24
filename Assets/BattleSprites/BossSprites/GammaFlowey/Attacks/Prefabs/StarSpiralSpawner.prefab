@@ -51,3 +51,4 @@ MonoBehaviour:
   speed: 5
   rotationSpeed: 12
   projectileLifetime: 5
+  spawnerLifetime: 5

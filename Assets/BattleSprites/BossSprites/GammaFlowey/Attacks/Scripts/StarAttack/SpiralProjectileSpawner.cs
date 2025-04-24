@@ -9,10 +9,14 @@ public class SpiralProjectileSpawner : MonoBehaviour
     public float spiralTightness = 20f;
     public float speed = 5f;
     public float rotationSpeed = 2f;
-    public float projectileLifetime = 5f; // ⏱ Despawn by time
+    public float projectileLifetime = 5f;
+
+    public float spawnerLifetime = 3f; // How long it spawns before auto-stopping
 
     private float spawnTimer = 0f;
+    private float totalLifetime = 0f;
     private int projectileIndex = 0;
+    private bool isSpawning = true;
 
     private class SpiralProjectile
     {
@@ -26,15 +30,30 @@ public class SpiralProjectileSpawner : MonoBehaviour
 
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-
-        if (spawnTimer >= spawnRate)
+        // Timer to auto-stop spawning after a while
+        if (isSpawning)
         {
-            spawnTimer = 0f;
-            SpawnProjectile();
+            totalLifetime += Time.deltaTime;
+
+            if (totalLifetime >= spawnerLifetime)
+                isSpawning = false;
+
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= spawnRate)
+            {
+                spawnTimer = 0f;
+                SpawnProjectile();
+            }
         }
 
+        // Always move existing projectiles
         MoveProjectilesOutward();
+
+        // When all projectiles are gone and we're not spawning anymore, destroy this object
+        if (!isSpawning && activeProjectiles.Count == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void SpawnProjectile()
@@ -82,5 +101,10 @@ public class SpiralProjectileSpawner : MonoBehaviour
 
             proj.transform.position = transform.position + new Vector3(x, y, 0f);
         }
+    }
+
+    public void StopSpawning()
+    {
+        isSpawning = false;
     }
 }

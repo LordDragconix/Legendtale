@@ -8,5 +8,7 @@ public class AttackData : ScriptableObject
     public float defaultDuration = 3f;           // For random/continuous
     public float bossDurationOverride = -1f;     // For boss mode
 
-    public bool waitForManualStop = false;       // NEW: Keeps attack running until forced stop
+    public bool waitForManualStop = false;       // Keeps attack running until forced stop
+
+    public float despawnDelay = 0f;
 }

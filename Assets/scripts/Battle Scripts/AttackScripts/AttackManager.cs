@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
+    public static AttackManager Instance;
+
     public List<AttackData> attackList;
     public bool isBossMode = false;
     public bool isContinuous = false;
@@ -11,7 +13,25 @@ public class AttackManager : MonoBehaviour
     private int bossAttackIndex = 0;
     private bool isAttacking = false;
 
-    private GameObject currentAttackInstance = null; // ?? Track the active attack object
+    private GameObject currentAttackInstance = null;
+
+    private List<SpiralProjectileSpawner> activeSpawners = new List<SpiralProjectileSpawner>();
+
+    public void RegisterSpawner(SpiralProjectileSpawner spawner)
+    {
+        if (spawner != null && !activeSpawners.Contains(spawner))
+            activeSpawners.Add(spawner);
+    }
+
+    private void StopAllRegisteredSpawners()
+    {
+        foreach (var s in activeSpawners)
+        {
+            if (s != null)
+                s.StopSpawning();
+        }
+        activeSpawners.Clear();
+    }
 
     public void StartAttacks()
     {
@@ -26,12 +46,13 @@ public class AttackManager : MonoBehaviour
 
         if (currentAttackInstance != null)
         {
-            // Try to stop it properly if it has a stop method
             var spawner = currentAttackInstance.GetComponent<BulletSpawner>();
             if (spawner != null)
                 spawner.StopAttack();
 
             Destroy(currentAttackInstance);
+            StopAllRegisteredSpawners();
+
         }
     }
 
@@ -39,37 +60,49 @@ public class AttackManager : MonoBehaviour
     {
         isAttacking = true;
 
+        GameObject previousAttackInstance = null;
+        AttackData previousAttackData = null;
+
         while (isAttacking)
         {
-            AttackData attack = GetNextAttack();
+            AttackData currentAttack = GetNextAttack();
 
-            // Cleanup previous attack before starting a new one
-            if (currentAttackInstance != null)
+            // Stop and detach previous attack (but don't destroy yet)
+            if (previousAttackInstance != null && previousAttackData != null)
             {
-                var spawner = currentAttackInstance.GetComponent<BulletSpawner>();
-                if (spawner != null)
-                    spawner.StopAttack();
+                var prevSpawner = previousAttackInstance.GetComponent<BulletSpawner>();
+                if (prevSpawner != null)
+                    prevSpawner.StopAttack();
 
-                Destroy(currentAttackInstance);
+                previousAttackInstance.transform.SetParent(null);
+                Destroy((Object)previousAttackInstance, previousAttackData.despawnDelay); // Explicit cast to avoid overload issues
+
+                StopAllRegisteredSpawners();
+
+
             }
 
-            // Spawn new attack and keep track of it
+            // Spawn new attack and track it
             currentAttackInstance = Instantiate(
-                attack.attackPrefab,
+                currentAttack.attackPrefab,
                 transform.position,
                 Quaternion.identity,
-                transform // parent it to monster
+                transform
             );
 
-            float duration = attack.waitForManualStop
+            // Store current as previous for next loop
+            previousAttackInstance = currentAttackInstance;
+            previousAttackData = currentAttack;
+
+            float duration = currentAttack.waitForManualStop
                 ? Mathf.Infinity
-                : isBossMode && attack.bossDurationOverride > 0f
-                    ? attack.bossDurationOverride
-                    : attack.defaultDuration;
+                : isBossMode && currentAttack.bossDurationOverride > 0f
+                    ? currentAttack.bossDurationOverride
+                    : currentAttack.defaultDuration;
 
             yield return new WaitForSeconds(duration);
 
-            if (!isContinuous && !attack.waitForManualStop)
+            if (!isContinuous && !currentAttack.waitForManualStop)
                 break;
         }
 
@@ -78,6 +111,9 @@ public class AttackManager : MonoBehaviour
 
     AttackData GetNextAttack()
     {
+        if (attackList == null || attackList.Count == 0)
+            return null;
+
         if (isBossMode)
         {
             var attack = attackList[bossAttackIndex];
@@ -87,4 +123,9 @@ public class AttackManager : MonoBehaviour
 
         return attackList[Random.Range(0, attackList.Count)];
     }
+    void Awake()
+    {
+        Instance = this;
+    }
+
 }
