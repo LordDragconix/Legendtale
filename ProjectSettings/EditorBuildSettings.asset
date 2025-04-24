@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prologue/GammaFlowey.unity
     guid: d823bfcf28ec6b24bb2ff59916b39fe3
+  - enabled: 1
+    path: Assets/Scenes/Menus/UndertaleGameOver.unity
+    guid: bb761bdb7da359041a4d38739308b8d2
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
