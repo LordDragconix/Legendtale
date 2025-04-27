@@ -1,8 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 using TMPro;
+using System.IO;
 
 public class BattleUIManager : MonoBehaviour
 {
@@ -10,30 +11,30 @@ public class BattleUIManager : MonoBehaviour
     public Button fightButton;
     public Button itemButton;
     public Slider playerHealthSlider;
-    public Slider bossHealthSlider;
-    public TextMeshProUGUI damageText;
-
-    [Header("Enemy Stats")]
-    public int enemyHP = 500;
-    public int enemyDefense = 10;
-
-    [Header("Player Stats")]
-    private int playerAttackPower;
 
     [Header("Timers")]
     public float minDisableTime = 30f;
     public float maxDisableTime = 60f;
 
+    [Header("Boss Routing")]
+    public PhaseCombatManager combatManager;
+
+    [Header("Enemies In Battle")]
+    public List<EnemyStats> activeEnemies = new List<EnemyStats>();
+
+    private int playerAttackPower;
     private int itemUses = 0;
     private const int maxItemUses = 8;
 
     private void Start()
     {
         LoadPlayerAttackPower();
+
+        if (combatManager == null)
+            combatManager = FindObjectOfType<PhaseCombatManager>();
+
         fightButton.interactable = true;
         itemButton.interactable = true;
-        bossHealthSlider.gameObject.SetActive(false);
-        damageText.gameObject.SetActive(false);
     }
 
     void LoadPlayerAttackPower()
@@ -61,43 +62,38 @@ public class BattleUIManager : MonoBehaviour
             itemUses++;
 
             if (itemUses >= maxItemUses)
-            {
-                itemButton.interactable = false; // Disable item button after 8 uses
-            }
+                itemButton.interactable = false;
 
-            DisableButtonsTemporarily(); // Temporarily disable both buttons
+            DisableButtonsTemporarily();
         }
     }
 
     public void UseFight()
     {
-        fightButton.interactable = false; // Disable fight button immediately
-        DisableButtonsTemporarily(); // Temporarily disable both buttons
+        fightButton.interactable = false;
+        DisableButtonsTemporarily();
 
-        int damageDealt = CalculateDamage();
-        enemyHP -= damageDealt;
+        int def = combatManager != null ? combatManager.GetCurrentDefense() : 0;
+        int damage = CalculateDamage(playerAttackPower, def);
 
-        bossHealthSlider.gameObject.SetActive(true);
-        bossHealthSlider.value = Mathf.Clamp(enemyHP, 0, bossHealthSlider.maxValue);
-
-        damageText.text = "-" + damageDealt.ToString();
-        damageText.gameObject.SetActive(true);
-
-        StartCoroutine(HideBossHealthBarAfterSeconds(3));
+        if (combatManager != null)
+        {
+            combatManager.DealDamage(damage);
+        }
+        else if (activeEnemies.Count > 0 && activeEnemies[0] != null)
+        {
+            // fallback for normal enemies
+            EnemyStats target = activeEnemies[0];
+            int enemyDef = target.GetDefense();
+            int dmg = CalculateDamage(playerAttackPower, enemyDef);
+            target.TakeDamage(dmg);
+        }
     }
 
-    IEnumerator HideBossHealthBarAfterSeconds(float seconds)
+    int CalculateDamage(int atk, int def)
     {
-        yield return new WaitForSeconds(seconds);
-        damageText.gameObject.SetActive(false);
-        bossHealthSlider.gameObject.SetActive(false);
-    }
-
-    int CalculateDamage()
-    {
-        int reducedDamage = enemyDefense / 5;
-        int finalDamage = Mathf.Max(1, playerAttackPower - reducedDamage);
-        return finalDamage;
+        int reducedDamage = def / 5;
+        return Mathf.Max(1, atk - reducedDamage);
     }
 
     void DisableButtonsTemporarily()
