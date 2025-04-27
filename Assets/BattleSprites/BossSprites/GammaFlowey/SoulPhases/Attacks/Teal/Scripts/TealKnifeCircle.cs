@@ -42,7 +42,7 @@ public class TealKnifeCircle : MonoBehaviour
         {
             float angle = i * angleStep;
             Vector3 spawnPos = centrePoint + Quaternion.Euler(0, 0, angle) * Vector3.up * spawnRadius;
-            GameObject knife = Instantiate(knifePrefab, spawnPos, Quaternion.identity);
+            GameObject knife = Instantiate(knifePrefab, spawnPos, Quaternion.identity, transform);
 
             KillerKnife killer = new KillerKnife(knife.transform, angle, spawnRadius, centrePoint);
             activeKnives.Add(killer);

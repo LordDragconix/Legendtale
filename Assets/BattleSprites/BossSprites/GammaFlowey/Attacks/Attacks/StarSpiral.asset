@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Star Eyes
   attackPrefab: {fileID: 7680698079586853676, guid: 8b4bd2be054479c4a93faabfda9404c7, type: 3}
-  defaultDuration: 3
+  defaultDuration: 5
   bossDurationOverride: -1
   waitForManualStop: 0
   despawnDelay: 0

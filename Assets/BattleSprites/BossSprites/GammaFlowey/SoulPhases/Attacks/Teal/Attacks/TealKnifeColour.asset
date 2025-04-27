@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 328b8b47cd4201e469cc94fd8534c184, type: 3}
-  m_Name: MouthLaserCannon
+  m_Name: TealKnifeColour
   m_EditorClassIdentifier: 
-  attackName: Mouth Laser Cannon
-  attackPrefab: {fileID: 2641798259904340687, guid: 6fed2f5796cd1f944812b8431913f9e7, type: 3}
-  defaultDuration: 2
+  attackName: BigKnifeSpawner
+  attackPrefab: {fileID: 1539050783728144305, guid: 8df42e3e1cd55204da5a6ec37c9b2b95, type: 3}
+  defaultDuration: 3
   bossDurationOverride: -1
   waitForManualStop: 0
-  despawnDelay: 1
+  despawnDelay: 0

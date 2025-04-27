@@ -1246,6 +1246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackList:
   - {fileID: 11400000, guid: 2a634fa54ca695140abc316f0b72c9fd, type: 2}
+  - {fileID: 11400000, guid: e8419cc05dde9d74fb8a0046c8236973, type: 2}
   isBossMode: 0
   isContinuous: 1
 --- !u!1 &310219810
@@ -4350,8 +4351,8 @@ MonoBehaviour:
   fightButton: {fileID: 1434141915}
   itemButton: {fileID: 452371435}
   playerHealthSlider: {fileID: 285362324}
-  minDisableTime: 8
-  maxDisableTime: 15
+  minDisableTime: 0
+  maxDisableTime: 0
   combatManager: {fileID: 1727316493}
   activeEnemies: []
 --- !u!4 &899455896
@@ -8752,7 +8753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1865687806
 Transform:
   m_ObjectHideFlags: 0
@@ -10372,7 +10373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2048978755
 Transform:
   m_ObjectHideFlags: 0

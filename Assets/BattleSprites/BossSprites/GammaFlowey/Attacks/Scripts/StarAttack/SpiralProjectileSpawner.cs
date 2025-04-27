@@ -30,30 +30,32 @@ public class SpiralProjectileSpawner : MonoBehaviour
 
     void Update()
     {
-        // Timer to auto-stop spawning after a while
-        if (isSpawning)
+        if (!isSpawning)
         {
-            totalLifetime += Time.deltaTime;
+            MoveProjectilesOutward();
 
-            if (totalLifetime >= spawnerLifetime)
-                isSpawning = false;
+            if (activeProjectiles.Count == 0)
+                Destroy(gameObject);
 
-            spawnTimer += Time.deltaTime;
-            if (spawnTimer >= spawnRate)
-            {
-                spawnTimer = 0f;
-                SpawnProjectile();
-            }
+            return;
         }
 
-        // Always move existing projectiles
+        totalLifetime += Time.deltaTime;
+
+        if (totalLifetime >= spawnerLifetime)
+            isSpawning = false;
+
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer >= spawnRate)
+        {
+            spawnTimer = 0f;
+            SpawnProjectile();
+        }
+
         MoveProjectilesOutward();
 
-        // When all projectiles are gone and we're not spawning anymore, destroy this object
         if (!isSpawning && activeProjectiles.Count == 0)
-        {
             Destroy(gameObject);
-        }
     }
 
     void SpawnProjectile()

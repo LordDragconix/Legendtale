@@ -17,3 +17,4 @@ MonoBehaviour:
   defaultDuration: 5
   bossDurationOverride: -1
   waitForManualStop: 0
+  despawnDelay: 1

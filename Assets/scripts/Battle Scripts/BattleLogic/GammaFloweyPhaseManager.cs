@@ -98,13 +98,21 @@ public class GammaFloweyPhaseManager : MonoBehaviour
 
         Debug.Log($"[GammaFloweyPhaseManager] Soul Phase {phaseIndex + 1} is being prepared...");
 
-        AttackManager.Instance?.StopAttacks();
+        if (phaseDisplay != null)
+        {
+            phaseDisplay.bossAttackManager?.StopAttacks();
+        }
+        else
+        {
+            AttackManager.Instance?.StopAttacks();
+        }
+
         MusicManager.Instance?.Play("ToSoulPhase_" + phaseIndex);
 
-        StartCoroutine(DelayedSoulPhaseStart(phaseIndex)); // ✅ This must be here
+        StartCoroutine(DelayedSoulPhaseStart(phaseIndex));
     }
 
-private IEnumerator DelayedSoulPhaseStart(int phaseIndex)
+    private IEnumerator DelayedSoulPhaseStart(int phaseIndex)
     {
         yield return new WaitForSeconds(5f);
         Debug.Log($"[GammaFloweyPhaseManager] Starting soul phase {phaseIndex}");
@@ -121,5 +129,4 @@ private IEnumerator DelayedSoulPhaseStart(int phaseIndex)
 
         MusicManager.Instance?.Play("Soul_" + phaseIndex);
     }
-
 }

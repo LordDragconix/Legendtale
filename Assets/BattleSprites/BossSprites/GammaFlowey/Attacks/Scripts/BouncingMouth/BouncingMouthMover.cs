@@ -8,6 +8,7 @@ public class BouncingMouthMover : MonoBehaviour
     public float moveSpeed = 5f;
 
     private bool hasStarted = false;
+    private bool isDespawning = false;
 
     public void SetPoints(Transform[] bouncePoints)
     {
@@ -24,7 +25,7 @@ public class BouncingMouthMover : MonoBehaviour
         transform.position = points[currentIndex].position;
         currentIndex = (currentIndex + 1) % points.Length;
 
-        Invoke(nameof(EnableMovement), 0.1f); // short delay to avoid early null-check
+        Invoke(nameof(EnableMovement), 0.1f);
     }
 
     void EnableMovement()
@@ -34,7 +35,7 @@ public class BouncingMouthMover : MonoBehaviour
 
     void Update()
     {
-        if (!hasStarted) return;
+        if (!hasStarted || isDespawning) return;
 
         if (points == null || points.Length == 0)
         {
@@ -50,5 +51,11 @@ public class BouncingMouthMover : MonoBehaviour
         {
             currentIndex = (currentIndex + 1) % points.Length;
         }
+    }
+
+    public void Despawn()
+    {
+        isDespawning = true;
+        Destroy(gameObject);
     }
 }

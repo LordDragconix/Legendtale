@@ -102,6 +102,7 @@ public class SoulPhaseController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         if (damageText != null)
+            soulHealthSlider.gameObject.SetActive(false);
             damageText.gameObject.SetActive(false);
     }
 }

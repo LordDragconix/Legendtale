@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Friendliness Pellets
   attackPrefab: {fileID: 8656673534370324479, guid: 8a9b3a7f52e1dd949812c316203490f9, type: 3}
-  defaultDuration: 3
+  defaultDuration: 2
   bossDurationOverride: -1
   waitForManualStop: 0
+  despawnDelay: 0
