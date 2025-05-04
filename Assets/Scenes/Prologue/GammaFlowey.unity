@@ -5947,6 +5947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackList:
   - {fileID: 11400000, guid: 684e8aa26e795ba47beb55eba6912089, type: 2}
+  - {fileID: 11400000, guid: a50e9cf1c7e83be44a64df53a0d66617, type: 2}
   isBossMode: 0
   isContinuous: 1
 --- !u!1 &754358607
